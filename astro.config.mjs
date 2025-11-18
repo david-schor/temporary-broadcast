@@ -9,8 +9,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  site: 'https://david-schor.github.io',
-  base: '/peaksix-website',
+  site: 'https://peaksix.ch',
+  base: '/temporary-broadcast',
   integrations: [
     react(), 
     sitemap({
