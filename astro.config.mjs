@@ -10,7 +10,6 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   site: 'https://peaksix.ch',
-  base: '/temporary-broadcast',
   integrations: [
     react(), 
     sitemap({
