@@ -1,0 +1,40 @@
+name: Deploy Astro Site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          github-server-url: http://192.168.0.5:3000
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Astro
+        run: npm run build
+
+      - name: SSH-Key Configuration
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.SCP_HOST }} >> ~/.ssh/known_hosts
+
+      - name: SCP Upload
+        run: |
+          scp -r dist/* ${{ secrets.SCP_USER }}@${{ secrets.SCP_HOST }}:${{ secrets.SCP_TARGET }}/peaksix

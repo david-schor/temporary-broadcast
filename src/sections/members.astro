@@ -1,0 +1,129 @@
+---
+import MemberCard from '../components/MemberCard.astro';
+
+import David from '../assets/images/members/david.jpg';
+import Koebi from '../assets/images/members/koebi.jpg';
+import Laurin from '../assets/images/members/laurin.jpg';
+import Manuel from '../assets/images/members/manuel.jpg';
+import Severin from '../assets/images/members/severin.jpg';
+import Xavi from '../assets/images/members/xavi.jpg';
+---
+
+<div class="container mx-auto h-screen px-4 sm:px-6 pt-12 pb-24 flex flex-col overflow-hidden">
+  <div class="text-center mb-10">
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+      <span>MEET THE </span>
+      <span class="font-black">TEAM</span>
+    </h1>
+  <div class="text-xl sm:text-2xl lg:text-3xl text-gray-600 mt-2">/mit ðə tim/</div>
+</div>
+
+  <div class="flex-1 flex justify-center items-center overflow-hidden">
+    <div class="carousel carousel-vertical rounded-box h-full">
+      <MemberCard
+        imgSrc={David}
+        name="David"
+        description="David feels at home when it gets steep and technical, especially if there’s a rope involved. He’s got endless energy and a steady pace, which is why we just call him “Schörli Motörli”."
+        username="schor42"
+      />
+
+      <MemberCard
+        imgSrc={Xavi}
+        name="Xavi"
+        description="Xavi rides with style and always brings a good vibe. Sometimes he misses the early start, but when he’s there, he’s all in and somehow ends the day with more friends than he started with."
+        username="xa__vier"
+      />
+
+        <MemberCard
+        imgSrc={Manuel}
+        name="Manuel"
+        description="Manuel is always up for an adventure, no matter how far the mission. His camera is never far, and he’s the one who quietly captures the best moments without ever slowing down."
+        username="manuel_herren_"
+      />
+
+        <MemberCard
+        imgSrc={Severin}
+        name="Severin"
+        description="Severin has a joke ready in any situation, even when things get sketchy. He notices the little things and sometimes just stops because the view is too good not to."
+        username="severin_herren"
+      />
+
+        <MemberCard
+        imgSrc={Koebi}
+        name="Köbi"
+        description="Köbi is the crew’s top skier, known for his flawless technique and, if the rumors are true, never having crashed. Also, he doesn’t find challenges, challenges find him."
+        username="koebi_vcs"
+      />
+
+        <MemberCard
+        imgSrc={Laurin}
+        name="Laurin"
+        description="Laurin stays calm and focused, even when it gets serious. But once he drops in, it’s fast and his turns are clean. If there’s a drone around, he’s the one to follow."
+        username="lau._lim"
+      />
+
+    </div>
+
+      <div id="dots" class="flex flex-col relative left-[-10px] md:left-[-25px] space-y-4 z-20">
+    <div class="dot w-1 h-1 md:w-3 md:h-3 bg-gray-600 rounded-full"></div>
+    <div class="dot w-1 h-1 md:w-3 md:h-3 bg-gray-600 rounded-full"></div>
+    <div class="dot w-1 h-1 md:w-3 md:h-3 bg-gray-600 rounded-full"></div>
+    <div class="dot w-1 h-1 md:w-3 md:h-3 bg-gray-600 rounded-full"></div>
+    <div class="dot w-1 h-1 md:w-3 md:h-3 bg-gray-600 rounded-full"></div>
+    <div class="dot w-1 h-1 md:w-3 md:h-3 bg-gray-600 rounded-full"></div>
+  </div> 
+
+  </div>
+</div>
+
+
+<script>
+ const carousel = document.querySelector('.carousel');
+    const items = Array.from(document.querySelectorAll('.carousel-item'));
+    const dots = Array.from(document.querySelectorAll('.dot'));
+
+    let scrollTimeout;
+
+    function getCenterSlideIndexVertical() {
+      const carouselRect = carousel.getBoundingClientRect();
+      const centerY = carouselRect.top + carouselRect.height / 2;
+
+      let closestIndex = -1;
+      let closestDistance = Infinity;
+
+      items.forEach((item, index) => {
+        const itemRect = item.getBoundingClientRect();
+        const itemCenterY = itemRect.top + itemRect.height / 2;
+
+        const distance = Math.abs(itemCenterY - centerY);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      return closestIndex;
+    }
+
+    function updateDots(index) {
+      dots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.add('bg-white');
+        } else {
+          dot.classList.remove('bg-white');
+        }
+      });
+    }
+
+    carousel.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const activeIndex = getCenterSlideIndexVertical();
+        updateDots(activeIndex);
+      }, 10);
+    });
+
+    // Init
+    updateDots(0);
+</script>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://peaksix.ch/sitemap-index.xml

@@ -1,0 +1,34 @@
+---
+---
+
+<div class="absolute left-1/2 bottom-12 transform -translate-x-1/2">
+  <a href="#mission" aria-label="Scroll down">
+    <div class="border-2 border-white rounded-full h-[68px] w-[38px] flex items-center justify-center relative">
+      <span class="absolute w-1.5 h-1.5 bg-white rounded-full animate-bounceDown"></span>
+      <span class="absolute w-1.5 h-1.5 bg-white rounded-full animate-bounceDown [animation-delay:1.255s]"></span>
+    </div>
+  </a>
+</div>
+
+<style>
+  @keyframes bounceDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+  }
+
+  @layer utilities {
+    .animate-bounceDown {
+      animation: bounceDown 2.5s infinite;
+    }
+  }
+</style>

@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import Landing from '../sections/landing.astro';
+import Mission from '../sections/mission.astro';
+import Members from '../sections/members.astro';
+import Projects from '../sections/projects.astro';
+import Gallery from '../sections/gallery.astro';
+import Contact from '../sections/contact.astro';
+
+
+const sections = [
+  { id: "section1", label: "Home" },
+  { id: "section2", label: "About" },
+  { id: "section3", label: "Services" },
+  { id: "section4", label: "Contact" },
+];
+---
+
+<Layout>
+	<div class="scroll-container">
+  		<section id="landing" class="snap-section">
+    		<Landing />
+  		</section>
+
+  		<section id="mission" class="snap-section">
+    		<Mission />
+  		</section>
+
+		<section id="members" class="snap-section">
+    		<Members />
+  		</section>
+
+		<section id="projects" class="snap-section">
+    		<Projects />
+  		</section>
+		
+		<section id="gallery" class="snap-section" style="background: #262626;">
+    		<Gallery />
+  		</section>
+
+		  		<section id="contact" class="snap-section">
+    		<Contact />
+  		</section>
+	</div>
+
+
+</Layout>
+
+
+<style>
+  .scroll-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  .snap-section {
+    scroll-snap-align: start;
+    height: 100vh;
+  }
+</style>

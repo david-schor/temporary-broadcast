@@ -1,0 +1,77 @@
+---
+
+---
+
+<div class="container mx-auto px-4 sm:px-6 pt-12 pb-24 h-screen flex flex-col">
+    <div class="text-center mb-10">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+            <span class="font-black">CONTACT</span>
+        </h1>
+        <div class="text-xl sm:text-2xl lg:text-3xl text-gray-600 mt-2">/ˈkɑn.tækt/</div>
+    </div>
+
+<div class="flex items-center justify-center flex-grow">
+  <div class="mx-auto w-full max-w-[550px]">
+    <form action="https://api.web3forms.com/submit" method="POST">
+         <input type="hidden" name="access_key" value="5e9aad57-a29c-44e9-8823-a5764109a73d">
+         <input type="hidden" name="from_name" value="PeakSix Website">
+         <input type="hidden" name="redirect" value="https://web3forms.com/success">
+      <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+      <div class="">
+        <input
+          type="text"
+          name="full_name"
+          id="name"
+          placeholder="Full Name"
+          required
+          minlength="2" 
+          maxlength="50"
+          class="validator input w-full bg-white  text-base font-medium text-gray-600 outline-none focus:border-none"
+        />
+        <div class="validator-hint">Enter name</div>
+      </div>
+      <div class="">
+        <input
+          type="email"
+          name="replyto"
+          id="email"
+          placeholder="example@domain.com"
+          required
+          class="validator input w-full bg-white  text-base font-medium text-gray-600 outline-none focus:border-none"
+        />
+        <div class="validator-hint">Enter valid email address</div>
+      </div>
+      <div class="">
+        <input
+          type="text"
+          name="subject"
+          id="subject"
+          placeholder="Enter your subject"
+          required
+          minlength="3" 
+          maxlength="50"
+          class="validator input w-full bg-white  text-base font-medium text-gray-600 outline-none focus:border-none"
+        />
+        <div class="validator-hint">Enter subject</div>
+      </div>
+      <div class="">
+        <textarea
+          rows="4"
+          name="message"
+          id="message"
+          placeholder="Type your message"
+          minlength="10" 
+          required
+          class="validator input textarea w-full text-base text-gray-600 font-medium outline-none focus:border-none"
+        ></textarea>
+        <div class="validator-hint">Enter message</div>
+      </div>
+      <div class="h-captcha" data-captcha="true"></div>
+      <div>
+        <button type="submit" class="btn text-white hover:bg-white hover:text-neutral text-base font-semibold">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+    
+</div>

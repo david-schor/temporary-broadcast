@@ -1,0 +1,188 @@
+---
+import Switzerland from '../assets/images/projects/switzerland.jpg';
+import Norway from '../assets/images/projects/norway.jpg';
+import Georgia from '../assets/images/projects/georgia.jpg';
+import Japan from '../assets/images/projects/japan.jpg';
+
+import ProjectSlide from '../components/ProjectSlider/ProjectSlide.astro';
+import ProjectThumbnail from '../components/ProjectSlider/ProjectThumbnail.astro';
+---
+
+<div class="relative w-full h-screen text-white">
+  <div class="absolute w-full text-center mb-10 z-100 top-12 left-1/2 transform -translate-x-1/2">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+                      <span>THE </span>
+            <span class="font-black">PROJECTS</span>
+        </h1>
+        <div class="text-xl sm:text-2xl lg:text-3xl text-gray-100 mt-2">/ðə ˈprɑ.dʒɛkts/</div>
+    </div>
+
+ <div class="slider relative w-full h-screen overflow-hidden bg-neutral">
+        <div class="list ">
+          <ProjectSlide
+         
+            image={Switzerland}
+            title="Switzerland"
+            description="As we all live in beautiful Switzerland, we have already completed numerous small and large projects here. There is something for everyone: from picturesque descents to challenging, steep routes."
+            link="/switzerland"
+          />
+
+          <ProjectSlide
+          
+            image={Norway}
+            title="Norway"
+            description="Norway is a must for all mountain enthusiasts like us. The enormously beautiful landscapes and direct sea views are a truly impressive sight."
+            link="/norway"
+          />
+          <ProjectSlide
+            image={Georgia}
+            title="Georgia"
+            description="Our last project took us to Georgia, where we explored the wild, untouched mountains with splitboards and touring skis. The combination of deep powder, breathtaking landscapes, and the warm hospitality of the local culture made this adventure truly special."
+            link="/georgia"
+            />
+          <ProjectSlide
+            image={Japan}
+            title="Japan"
+            description="Our next project will take us to Japan. We want to experience the unique powder, the fascinating culture, and the unmistakable nature at least once. However, as this project is more extensive, we are already in the planning phase. The project is scheduled for February 2026."
+            link="/japan"
+          />       
+    </div>
+
+
+<div class="thumbnail absolute bottom-24 z-20 flex gap-2.5 w-full max-h-[220px] px-12 box-border overflow-x-auto overflow-y-hidden snap-x snap-proximity scrollbar-none lg:justify-center no-scrollbar">
+      <ProjectThumbnail
+            image={Switzerland}
+            title="switzerland"
+          /> 
+          <ProjectThumbnail
+            image={Norway}
+            title="norway"
+          /> 
+          <ProjectThumbnail
+            image={Georgia}
+            title="georgia"
+          /> 
+          <ProjectThumbnail
+            image={Japan}
+            title="japan"
+          /> 
+  </div>
+  
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const items = document.querySelectorAll('.slider .list .item');
+const thumbnails = document.querySelectorAll('.thumbnail .item');
+const thumbnailContainer = document.querySelector('.thumbnail');
+let activeIndex = 0;
+
+function clearActiveStates() {
+  
+  items.forEach(item => item.classList.remove('active'));
+  thumbnails.forEach(thumb => {
+    thumb.classList.remove('active');
+
+
+
+    const img = thumb.querySelector('img.background');
+    if (img) img.style.filter = 'brightness(0.5)';
+    const textMask = thumb.querySelector('.text-mask');
+    if (textMask) textMask.style.display = 'flex';
+  });
+}
+
+let initialized = false;
+
+function setActiveState(index) {
+  if (index === activeIndex && initialized) return;
+
+  clearActiveStates();
+
+  const item = items[index];
+  const thumb = thumbnails[index];
+  if (!item || !thumb) return;
+
+  // Sofort aktivieren
+  item.classList.add('active');
+  thumb.classList.add('active');
+
+  const img = thumb.querySelector('img.background');
+  if (img) img.style.filter = 'brightness(1)';
+
+  const textMask = thumb.querySelector('.text-mask');
+  if (textMask) textMask.style.display = 'none';
+
+  // Dann sanft in die Mitte scrollen
+  scrollThumbnailIntoCenter(thumb);
+
+  activeIndex = index;
+  initialized = true;
+}
+
+function scrollThumbnailIntoCenter(thumb) {
+  const container = thumbnailContainer;
+  const containerRect = container.getBoundingClientRect();
+  const thumbRect = thumb.getBoundingClientRect();
+  const offset = thumbRect.left - containerRect.left - (container.clientWidth / 2 - thumbRect.width / 2);
+
+  container.scrollBy({
+    left: offset,
+    behavior: 'smooth'
+  });
+}
+
+// Thumbnail-Klick
+thumbnails.forEach((thumb, index) => {
+  thumb.addEventListener('click', () => {
+    setActiveState(index);
+  });
+});
+
+// Scroll Listener
+let scrollTimeout;
+thumbnailContainer.addEventListener('scroll', () => {
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(updateActiveByScroll, 100);
+});
+
+function updateActiveByScroll() {
+  const containerRect = thumbnailContainer.getBoundingClientRect();
+  const containerCenter = containerRect.left + thumbnailContainer.clientWidth / 2;
+
+  let closestIndex = 0;
+  let smallestDistance = Infinity;
+
+  thumbnails.forEach((thumb, i) => {
+    const rect = thumb.getBoundingClientRect();
+    const thumbCenter = rect.left + rect.width / 2;
+    const distance = Math.abs(containerCenter - thumbCenter);
+    if (distance < smallestDistance) {
+      smallestDistance = distance;
+      closestIndex = i;
+    }
+  });
+
+  // Nur aktivieren, nicht scrollen
+  if (closestIndex !== activeIndex) {
+    clearActiveStates();
+
+    const item = items[closestIndex];
+    const thumb = thumbnails[closestIndex];
+
+    item.classList.add('active');
+    thumb.classList.add('active');
+
+    const img = thumb.querySelector('img.background');
+    if (img) img.style.filter = 'brightness(1)';
+
+    const textMask = thumb.querySelector('.text-mask');
+    if (textMask) textMask.style.display = 'none';
+
+    activeIndex = closestIndex;
+  }
+}
+
+// Initialisierung
+setActiveState(activeIndex);
+});
+</script>

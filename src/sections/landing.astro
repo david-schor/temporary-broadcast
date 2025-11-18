@@ -1,0 +1,51 @@
+---
+import Scrolldown from '../components/Scrolldown.astro';
+import Logo from '../assets/logo.svg';
+
+import { Image } from 'astro:assets';
+
+import videowebm from '../assets/video.webm';
+import poster from '../assets/poster.png';
+
+---
+
+<div class="relative w-full h-screen overflow-hidden">
+  <div class="absolute top-4 right-6 z-30">
+    <Image src={Logo} width="1" height="1" quality={1} decoding="async"
+          loading="eager" alt="Peaksix Logo" class="h-[15vh] w-auto" />
+  </div>
+
+  <a href="https://www.youtube-nocookie.com/embed/0DeEVj4yaKM?si=S-oqPrsBKoBCg_YP?autoplay=1&modestbranding=1&controls=0&rel=0&showinfo=0" target="_blank" rel="noopener noreferrer" aria-label="click video to watch the full version" class="w-full h-full glightbox" data-gallery="gallery-landing">
+    <video autoplay muted loop playsinline id="video" poster={poster.src} class="absolute top-0 left-0 w-full h-full object-cover object-center" style="user-select: none;" preload="auto">
+      <source src={videowebm} type="video/webm" />
+    </video>
+<div id="video-overlay" class="absolute inset-0 flex items-center justify-center z-20 bg-black/20">
+  <div id="play-button" aria-label="Play Video" class="text-white bg-white/20 backdrop-blur-md rounded-full p-6 hover:bg-white/30">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M8 5v14l11-7z"/>
+  </svg>
+  </div>
+</div>
+
+  </a>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30">
+    <Scrolldown />
+  </div>
+</div>
+
+<script>
+  const video = document.getElementById("video");
+
+  video.addEventListener("canplaythrough", () => {
+    video.play();
+  });
+
+    import GLightbox from 'glightbox'
+
+  const lightbox = GLightbox({
+        touchNavigation: true,
+    loop: true,
+    autoplayVideos: true
+  })
+</script>

@@ -1,0 +1,171 @@
+---
+import "../../assets/app.css";
+
+
+import { collectionNames } from '../../content/config';
+import { ClientRouter  } from 'astro:transitions';
+import { Image } from 'astro:assets';
+const { frontmatter  } = Astro.props;
+
+
+import { Image } from 'astro:assets';
+
+export async function getStaticPaths() {
+  return collectionNames.map((collection) => ({
+    params: { collection }
+  }));
+}
+
+
+
+
+import { getCollection } from 'astro:content';
+
+const { collection } = Astro.params;
+const posts = await getCollection(collection);
+
+
+
+const filteredPosts = posts.filter(post => post.slug !== 'index');
+
+const images = import.meta.glob('../../assets/images/content/**/*.{jpg,jpeg,png}', {
+  eager: true,
+  import: 'default',
+});
+
+// Erzeuge ein Map-Objekt: { "blauberg-couloir.jpg": <image-module> }
+const imageMap = Object.fromEntries(
+  Object.entries(images).map(([path, mod]) => [path.split('/').pop(), mod])
+);
+
+
+const post = posts.find((post) => post.slug === "index");
+const { title, subtitle, gallery } = post.data;
+const { Content } = await post.render();
+
+let galleryImages = [];
+
+
+if (gallery) {
+  const { getImages } = await import("../../utils/albums.ts");
+  galleryImages = await getImages(gallery);
+}
+
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="node_modules/glightbox/dist/css/glightbox.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>Peak Six</title>
+	</head>
+	<body>
+
+
+<div class="container mx-auto px-4 sm:px-6 pt-12 pb-24 h-screen flex flex-col">
+    <div class="text-center mb-10">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+            <span class="font-black" transition:name={`project-title-${title}`}>{title}</span>
+        </h1>
+        <div class="text-xl sm:text-2xl lg:text-3xl text-gray-600 mt-2">{subtitle}</div>
+    </div>
+<div class="text-center text-[clamp(0.9rem,1.6vh,1.3rem)] md:text-[clamp(1rem,2.1vh,2rem)] lg:text-[clamp(1rem,2.5vh,3rem)] leading-relaxed space-y-5">
+
+    <Content />
+
+    </div>
+
+
+
+   {galleryImages.length > 0 && (
+  <div class="mx-auto container my-8 columns-2 md:columns-3 lg:columns-4 xl:columns-5">
+    {
+      galleryImages.map((image) => (
+        <a href={image.src} class="glightbox" data-gallery="gallery1">
+        <Image
+          src={image}
+          alt={title}
+          format="jpg"
+          quality={50}
+          height="1000"
+          width="1000"
+          loading="eager"
+          class="skeleton glightbox-image object-cover rounded-sm mb-4 border border-transparent hover:border-gray-300 transition-all duration-300 ease-in-out hover:shadow-lg"
+        />
+        </a>
+      ))
+    }
+  </div>
+)}
+
+
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pb-6">
+
+
+{filteredPosts.map((post) => {
+  const image = imageMap[post.data.image]; // image = ESM import oder undefined
+  return (
+    <a href={`/${collection}/${post.slug}`} transition:name={`post-title-${post.slug}`}>
+      <div class="card bg-base-100 h-110 shadow-sm hover:shadow-lg">
+        <figure class="h-50 overflow-hidden relative">
+          {image ? (
+            <Image
+              src={image}
+              alt={post.data.title}
+              format="jpg"
+              height="1000"
+              width="1000"
+              quality={100}
+              loading="eager"
+              class="skeleton w-full h-full object-cover object-center absolute top-0 left-0"
+            />
+          ) : (
+            <div class="bg-gray-100 text-center text-gray-500 py-8">No Image</div>
+          )}
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title font-black">{post.data.title}</h2>
+          <p>{post.data.description}</p>
+          <div class="card-actions justify-end">
+            {post.data.tags?.map((tag) => (
+              <div class="badge badge-outline">{tag}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </a>
+  );
+})}
+
+
+</div>
+<a href="/#projects">
+<button
+  class="p-0 w-10 h-10 md:h-15 md:w-15 bg-neutral rounded-full hover:bg-white hover:fill-neutral fill-white active:shadow-lg shadow transition ease-in duration-200 focus:outline-none fixed bottom-4 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+  <svg class="w-5 h-5 md:h-7 md:w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+    <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+  </svg>
+</button>
+</a>
+</div>
+</body>
+
+
+
+<script>
+  import GLightbox from 'glightbox'
+
+  const lightbox = GLightbox({
+        touchNavigation: true,
+    loop: true,
+    autoplayVideos: true
+  })
+</script>
+
+</html>
+

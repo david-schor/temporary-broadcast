@@ -1,0 +1,31 @@
+---
+import "../assets/app.css";
+
+import { ClientRouter } from 'astro:transitions';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<script src="../assets/vendor/scroll-timeline@15.05.25.js"></script>
+		<script async is:inline data-astro-rerun src="https://umami.peaksix.ch/script.js" data-website-id="cb702538-1084-4274-ab84-f4f91783f544"></script>
+		<link rel="stylesheet" href="node_modules/glightbox/dist/css/glightbox.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Six friends, steep lines, and no shortcuts. We ride what’s rarely ridden, hike what others skip, and seek what inspires – all with heart, grit, and honesty.">
+		<meta name="author" content="David Schor">
+		<meta name="keywords" content="Backcountry, Mountain, Expeditions, Splitboard, Ski">
+		<meta name="generator" content="Mountain Coldness">
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" href="/favicon.svg">
+		<title>Peak Six</title>
+		<ClientRouter />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

@@ -1,0 +1,79 @@
+---
+const { image, title, description, isActive, link } = Astro.props;
+
+import { Image } from 'astro:assets';
+---
+
+<style>
+
+  .item {
+    pointer-events: none; 
+  }
+
+  .item.active {
+    opacity: 1;
+    z-index: 10;
+     pointer-events: auto;
+  }
+
+  .item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, #262626 20%, transparent);
+    pointer-events: none;
+  }
+
+  @keyframes showContent {
+    from {
+      opacity: 0;
+      transform: translateY(100px);
+      filter: blur(33px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  .item.active h2,
+  .item.active p,
+  .item.active a {
+    opacity: 0;
+    transform: translateY(30px);
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-name: showContent;
+    animation-duration: 0.5s;
+  }
+
+  .item.active h2 {
+    animation-delay: 0.7s;
+  }
+
+  .item.active p {
+    animation-delay: 1s;
+  }
+
+  .item.active a {
+    animation-delay: 1.3s;
+  }
+</style>
+
+
+
+<div class={`item absolute inset-0 overflow-hidden transition-opacity duration-500 z-10 ${isActive ? 'opacity-100 active' : 'opacity-0'}`}>
+        <Image class="w-full h-screen object-cover" height="2000" width="2000" src={image} alt={title} />
+        <div class="absolute left-[10%] top-[20%] w-[500px] max-w-[80%] z-10">
+          <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black" transition:name={`project-title-${title}`}>{title}</h2>
+          <p class="text-[clamp(0.7rem,1.8vh,1.3rem)] md:text-[clamp(1rem,2.1vh,2rem)] lg:text-[clamp(1rem,2.3vh,3rem)]">
+           {description}
+          </p>
+          <a class="btn btn-md lg:btn-xl text-base font-semibold border-white mt-4 bg-white hover:bg-transparent hover:text-white"  href={link}>Read the Story</a>
+        </div>
+      </div>

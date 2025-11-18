@@ -1,0 +1,85 @@
+---
+import "../../assets/app.css";
+
+import getAllCollections from '../../utils/getAllCollections.js';
+
+
+export async function getStaticPaths() {
+  const content = await getAllCollections();
+
+  return content
+    .filter((entry) => entry.slug !== '' && entry.slug !== 'index')
+    .map((entry) => {
+      return {
+        params: {
+          slug: entry.slug,
+          collection: entry.collection,
+        },
+        props: { entry },
+      };
+    });
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+import { getCollection } from 'astro:content';
+
+const { collection } = Astro.params;
+const posts = await getCollection(collection);
+
+const images = import.meta.glob('../../assets/images/content/**/*.{jpg,jpeg,png}', {
+  eager: true,
+  import: 'default',
+});
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+    <link rel="stylesheet" href="node_modules/glightbox/dist/css/glightbox.min.css">
+    <title>Peak Six</title>
+  </head>
+  <body>
+
+    <div class="container mx-auto px-4 sm:px-6 pt-12 pb-24 h-screen flex flex-col">
+      <div class="text-center mb-10">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+          <span class="font-black" transition:name={`post-title-${entry.slug}`}>{entry.data.title}</span>
+        </h1>
+        <div class="text-xl sm:text-2xl lg:text-3xl text-gray-600 mt-2">{entry.data.subtitle}</div>
+      </div>
+
+      <div class="text-center text-[clamp(0.9rem,1.6vh,1.3rem)] md:text-[clamp(1rem,2.1vh,2rem)] lg:text-[clamp(1rem,2.5vh,3rem)] leading-relaxed space-y-5 pb-24 slug">
+        <Content />
+      </div>
+
+
+
+      <!-- Zurück zur Collection -->
+      <a href={`/${collection}`} class="fixed bottom-4 left-1/2 transform -translate-x-1/2">
+        <button
+          class="p-0 w-10 h-10 md:h-15 md:w-15 bg-neutral rounded-full hover:bg-white hover:fill-neutral fill-white active:shadow-lg shadow transition ease-in duration-200 focus:outline-none flex items-center justify-center">
+          <svg class="w-5 h-5 md:h-7 md:w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+          </svg>
+        </button>
+      </a>
+    </div>
+
+  </body>
+
+  <script>
+  import GLightbox from 'glightbox'
+
+  const lightbox = GLightbox({
+        touchNavigation: true,
+    loop: true,
+    autoplayVideos: true
+  })
+</script>
+</html>
