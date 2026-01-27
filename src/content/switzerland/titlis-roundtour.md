@@ -31,7 +31,7 @@ But the real race was just beginning. Several groups were already heading toward
 
 ### The Key Point
 
-Still anxious that the winds might return, we couldn’t fully enjoy our first turns on the glacier. We carefully navigated around a crevasse and traversed toward "The Knife"—a narrow ridge dotted with boulders that required a short climb. After a quick switch to crampons and securing our skis to our packs, we crossed the ridge and reached the first rappel point.
+Still anxious that the winds might return, we couldn’t fully enjoy our first turns on the glacier. We carefully navigated around a crevasse and traversed toward "The Knife", a narrow ridge dotted with boulders that required a short climb. After a quick switch to crampons and securing our skis to our packs, we crossed the ridge and reached the first rappel point.
 
 We arrived as the second group. Quickly setting up our rappel, we descended 30 meters into a small couloir. From there, it was possible to walk down a bit and begin skiing from a slightly wider section. I decided to give it a go. A few jump turns later, the couloir opened up, revealing a wide slope with beautiful powder.
 
@@ -65,6 +65,6 @@ Each turn felt like floating. The powder was smooth, though the terrain undernea
 
 From there, we carried our skis to spare them from damage. At last, we emerged into the basin, where we joined a cross-country ski trail. Channeling our finest skating technique, we glided to the bus station.
 
-Another Varied Tour Successfully Completed
+Another Varied Tour Successfully Completed!
 
 ![Rocky](../../assets/images/content/switzerland/titlis-roundtour/rocky.jpg "rocky")
