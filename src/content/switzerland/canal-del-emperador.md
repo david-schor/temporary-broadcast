@@ -52,6 +52,6 @@ Once through the narrow section, the couloir opened up again, revealing more pri
 ---
 
 ### A Day to Remember
-As we reached the end of the couloir, we were filled with a sense of accomplishment and awe. The Canal del Emperador had delivered everything we hoped for: thrilling technical sections, untouched powder, and breathtaking scenery.
+As we reached the end of the couloir, we were filled with a sense of accomplishment and awe. The Canal del Emperador had delivered everything we hoped for!
 
-Reflecting on the day, we couldn’t help but feel grateful for the unique experiences the Swiss Alps offer. This wasn’t just a ski tour—it was an adventure that pushed us, thrilled us, and left us eager to return for more.
+Reflecting on the day, we couldn’t help but feel grateful for the unique experiences the Swiss Alps offer. 
