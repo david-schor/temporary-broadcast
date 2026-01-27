@@ -24,7 +24,7 @@ Shortly after, we were back on the road and managed to catch the first train fro
 
 ### First Steps
 After a bit of button-lift riding, we were soon ready to start hiking. The first ascents were tough, as we had to fight through the fresh snow. But we persevered and soon reached the ladder that led us to the saddle of Piz Ault. The term “ladder” is somewhat exaggerated, as it was merely a few iron bars in the rock.
-The visibility deteriorated, and a difficult section lay ahead. We decided to tackle it on foot, as the strong wind and poor visibility made communication impossible—even with our radios.
+The visibility deteriorated, and a difficult section lay ahead. We decided to tackle it on foot, as the strong wind and poor visibility made communication impossible, even with our radios.
 Soon, the weather cleared, and we found ourselves on the Brunnifirn, which unfortunately turned into a test of patience and strength for us splitboarders. With little fresh snow, a descent is guaranteed, but with a lot of new and windblown snow, we were forced to cross-country ski.
 ![Ladder](../../assets/images/content/switzerland/fruttstock-couloir/ladder.jpg "Ladder")
 
