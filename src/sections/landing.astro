@@ -1,6 +1,7 @@
 ---
 import Scrolldown from '../components/Scrolldown.astro';
 import Logo from '../assets/logo.svg';
+import Fritschi from '../assets/fritschi.svg';
 
 import { Image } from 'astro:assets';
 
@@ -10,6 +11,20 @@ import poster from '../assets/poster.png';
 ---
 
 <div class="relative w-full h-screen overflow-hidden">
+
+  <div class="absolute top-4 left-6 z-30">
+    <Image
+      src={Fritschi}
+      width="1"
+      height="1"
+      quality={1}
+      decoding="async"
+      loading="eager"
+      alt="Fritschi Logo"
+      class="h-[12vh] w-auto opacity-60 grayscale"
+    />
+  </div>
+
   <div class="absolute top-4 right-6 z-30">
     <Image src={Logo} width="1" height="1" quality={1} decoding="async"
           loading="eager" alt="Peaksix Logo" class="h-[15vh] w-auto" />
