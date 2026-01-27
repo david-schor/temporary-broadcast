@@ -8,4 +8,14 @@ tags: ["japan", "project", "powder"]
 
 ---
 
-Our next project will take us to Japan. We want to experience the unique powder, the fascinating culture, and the unmistakable nature at least once. However, as this project is more extensive, we are already in the planning phase. The project is scheduled for February 2026.
+After 1.5 years of planning, the moment has finally arrived:
+On 29. January 2026, our journey to Japan begins.
+
+Instead of following the usual tourist routes, we’re heading far north to Hokkaido, searching for the hidden and beautiful tours off the beaten path.
+
+<div class="notice">
+Follow our journey on Instagram! <br />
+<a href="https://instagram.com/peaksix" target="_blank">Instagram</a> <br />
+<br />
+Also a big thanks to <a href="https://fritschi.swiss/" target="_blank">Fritschi</a> fo supporting us!
+</div>
