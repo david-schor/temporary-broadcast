@@ -8,10 +8,6 @@ tags: ["japan", "project", "powder"]
 gallery: "japan"
 ---
 
-Here is the full text translated into English, with markdown removed:
-
----
-
 Where does one even begin after spending a month in a completely foreign country? Should we talk about what was so great? The snow? The weather? The food? Or just write about the time we shared together? We actually wanted a short, punchy intro. But who are we to pretend otherwise, after everything that happened.
 
 Well then, let's start at the beginning: it all started with an idea. The idea of going to Japan and simply shredding some incredible powder.
